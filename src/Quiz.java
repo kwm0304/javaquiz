@@ -131,7 +131,7 @@ public class Quiz implements ActionListener{
             {"False", "True"},
             {"If the memory is full, the program proceeds as normal", "It grows and shrinks as new methods are called and returned, respectively", "Variables inside the stack exist only as long as the method that created them is running", "It's automatically allocated and deallocated when the method finishes execution"},
             {"First In First Out", "Last In First Out", "Random access to some elements in the stack", "Full access to all elements in the stack"},
-            {"The flow goes back to the calling method", "It's corresponding stack frame is flushed", "The memory is allocated for the stack is lost until the machine reset", "Space becomes available for the next method"},
+            {"The flow goes back to the calling method", "It's corresponding stack frame is flushed", "The memory is allocated for the stack is lost until the machine resets", "Space becomes available for the next method"},
             {"Heap space is used for the dynamic memory allocation of Java objects and JRE classes at runtime", "New objects are always created in the heap space", "References to objects in heap space are stored in stack memory", "Heap space uses static memory allocation"},
             {"If heap space is full, Java throws java.lang.OutOfMemoryError", "This memory, in contrast to stack, isn't automatically deallocated", "Unlike stack, a heap isn't threadsafe and needs to be guarded by properly synchronizing the code..", "Access to this memory is faster compared to stack memory"},
             {"Syntax rules", "Validation rules", "Mapping rules", "Processing rules"},
@@ -150,7 +150,7 @@ public class Quiz implements ActionListener{
             {"Fullstack", "Front end", "Back end", "Client side"},
             {"HTML", "CSS", "Server software", "Javascript"},
             {"Automatic memory management" ,"Limited open-source community", "Platform-dependent", "Limited built-in runtime library"},
-            {"Variables and loops", "Classes and objects.",  "Compilers and linkers", "Integers and floating-point numbers"},
+            {"Variables and loops", "Classes and objects",  "Compilers and linkers", "Integers and floating-point numbers"},
             {"A state", "A behavior", "A blueprint for creating objects", "A method"},
             {"A blueprint for creating a class", "A field", "An instance of a class definition", "A method"},
             {"bytecode", "bitcode", "hexcode", "octalcode"},
@@ -162,7 +162,7 @@ public class Quiz implements ActionListener{
             {"It serves as an introduction to programming", "It is a lengthy program that will test out all aspects of a programming language", "It requires detailed knowledge of a programming language's syntax", "It provides a rigorous test of a machine's resources"},
             {"An experienced programmer would never use such a simple program.", "To test that all components of a new programming language were installed properly.", "To test a new sound card.", "To create a new Notepad program for Windows."},
             {"A template used to instantiate objects", "A block of reusable code", "An instance of a class in memory", "A variable that stores the reference to an object in memory"},
-            {"Strongly typed language", "Obselete language", "Weakly typed language", "Object Oriented language"},
+            {"Strongly typed language", "Obsolete language", "Weakly typed language", "Object Oriented language"},
             {"A primitive variable stores a value, a reference variable stores the memory address of an object", "A primitive variable stores a value, a reference variable stores an object", "A primitive variable stores the memory address of a value, a reference variable stores the memory address of an object", "There is no difference"},
             {"32 bits (4 bytes)", "8 bits (1 byte)", "16 bits (2 bytes)", "64 bits (8 bytes)"},
             {"double", "float", "int", "real"},
@@ -244,13 +244,140 @@ public class Quiz implements ActionListener{
             "False",
             "If the memory is full, the program proceeds as normal",
             "Last In First Out",
-            
-
-
+            "The memory is allocated for the stack is lost until the machine resets",
+            "Heap space uses static memory allocation",
+            "Access to this memory is faster compared to stack memory",
+            "Syntax rules",
+            "False",
+            "True",
+            "It can never be forced",
+            "True",
+            "You cannot force garbage collection",
+            "False",
+            "Marketing of the final product",
+            "GNU/Linux offers a wide range of hardware compatibility with external peripherals",
+            "macOS is less expensive than Windows or GNU/Linux when considering hardware/software costs",
+            "Windows updates rarely hinder the performance of software developed under the previous version",
+            "Fullstack",
+            "Front end",
+            "Back end",
+            "Server software",
+            "Automatic memory management",
+            "Classes and objects",
+            "A blueprint for creating objects",
+            "An instance of a class definition",
+            "bytecode",
+            "compiler",
+            "Write Once, Run Anywhere",
+            "It can be run on any machine that has a JRE/JVM",
+            "A Just in Time Compiler",
+            "When source code is converted to byte code",
+            "It serves as an introduction to programming",
+            "To test that all components of a new programming language were installed properly.",
+            "A block of reusable code",
+            "Strongly typed language",
+            "A primitive variable stores a value, a reference variable stores the memory address of an object",
+            "32 bits (4 bytes)",
+            "double",
+            "Semantic",
+            "y is set equal to 5",
+            "x is increased by 1",
+            "postfix",
+            "String",
+            "Memory addresses",
+            "my string",
+            "To allow normal program flow",
+            "Can be used with or without a label",
+            "A continue directs program flow to the next loop iteration, a break immediately directs program flow out of the loop.",
+            "Can be used with or without a label",
+            "for loop",
+            "while loop",
+            "do-while loop",
+            "Conditional",
+            "moth",
+            "False",
+            "Binary search",
+            "Troubleshooting",
+            "Drilling down",
+            "False",
+            "True",
+            "stack",
+            "frame",
+            "stack trace",
+            "Throwable",
+            "User input",
+            "Packages create more disorganization.",
+            "Only in the same class",
+            "java.lang",
+            "Converted to a double",
+            "Converted to a float",
+            "Converted to a long",
+            "A template used to instantiate objects",
+            "An executable element inside of a class",
+            "An instance of a class in memory",
+            "A variable that stores the reference to an object in memory",
+            "Classes can be developed independently of each other",
+            "0",
+            "constructors have no return type",
+            "initializing object state",
+            "this",
+            "Integer",
+            "Boxing",
+            "Unboxing",
+            "Autoboxing",
+            "ArrayList",
+            "It does not preserve the order in which elements are inserted.",
+            "eliminate()",
+            "firstIndexOf()",
+            "The exception propagates up through the call stack until it is handled by the JVM which will then terminate the program.",
+            "A try-catch block",
+            "throws",
+            "finally",
+            "Can be created by extending any exception class",
+            "An unchecked exception",
+            "Extend any existing exception class",
+            "So that we write the code that handles the exception",
+            "Base classes are usually more specific than derived classes.",
+            "Prime numbers",
+            "Single inheritance",
+            "Hierarchical inheritance"
     };
+
+    char guess;
+    char answer;
+    int index;
+    int correct_guesses = 0;
+    int total_questions = questions.length;
+    int result;
+    int seconds=60;
+
+    JFrame frame = new JFrame();
+    JTextField textField = new JTextField();
+    JTextArea textArea = new JTextArea();
+    JButton buttonA = new JButton();
+    JButton buttonB = new JButton();
+    JButton buttonC = new JButton();
+    JButton buttonD = new JButton();
+    JButton buttonTrue = new JButton();
+    JButton buttonFalse = new JButton();
+    JLabel answer_labelA = new JLabel();
+    JLabel answer_labelB = new JLabel();
+    JLabel answer_labelC = new JLabel();
+    JLabel answer_labelD = new JLabel();
+    JLabel answer_labelTrue = new JLabel();
+    JLabel answer_labelFalse = new JLabel();
+    JLabel time_label = new JLabel();
+    JLabel seconds_left = new JLabel();
+    JTextField number_right = new JTextField();
+    JTextField percentage = new JTextField();
+
+
     //constructor
     public Quiz() {
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(650,650);
 
+        frame.setVisible(true);
     }
     public void nextQuestion() {
 
