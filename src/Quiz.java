@@ -350,7 +350,8 @@ public class Quiz implements ActionListener{
     int correct_guesses = 0;
     int total_questions = questions.length;
     int result;
-    int seconds=60;
+    int seconds = 60;
+    int current_score = 0;
 
     JFrame frame = new JFrame();
     JTextField textField = new JTextField();
@@ -368,7 +369,9 @@ public class Quiz implements ActionListener{
     JLabel answer_labelTrue = new JLabel();
     JLabel answer_labelFalse = new JLabel();
     JLabel time_label = new JLabel();
+    JLabel score_label = new JLabel();
     JLabel seconds_left = new JLabel();
+    JLabel score_board = new JLabel();
     JTextField number_right = new JTextField();
     JTextField percentage = new JTextField();
 
@@ -381,33 +384,150 @@ public class Quiz implements ActionListener{
         frame.setLayout(null);
         frame.setResizable(false);
 
-        textField.setBounds(42,0,1000,50);
-        textField.setBackground(new Color(100,102,105));
-        textField.setForeground(new Color(244,244,245));
+        textField.setBounds(0,0,650,40);
+        textField.setBackground(new Color(50,52,55));
+        textField.setForeground(new Color(226,183,20));
         textField.setBorder(BorderFactory.createEmptyBorder());
         textField.setFont(new Font("Monospaced", Font.BOLD, 30));
-        textField.setHorizontalAlignment(JTextField.CENTER);
+        textField.setHorizontalAlignment(JTextField.LEFT);
         textField.setEditable(false);
 
-        textArea.setBounds(42,50,1000,50);
+        textArea.setBounds(0,50,1000,40);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
-        textArea.setBackground(new Color(100,102,105));
+        textArea.setBackground(new Color(50,52,55));
         textArea.setForeground(new Color(244,244,245));
         textArea.setBorder(BorderFactory.createEmptyBorder());
         textArea.setFont(new Font("Monospaced", Font.BOLD, 25));
+        textArea.setCaretPosition(0);
         textArea.setEditable(false);
 
         CheckboxGroup checkBox = new CheckboxGroup();
-        buttonA.setBounds(0, 100, 15,15);
+        buttonA.setBounds(12, 150, 15,15);
+        buttonA.setBorderPainted(false);
+        buttonA.setBackground(new Color(50,52,55));
+        buttonA.setForeground(new Color(226,183,20));
         buttonA.addActionListener(this);
 
+        buttonB.setBounds(12, 250, 15,15);
+        buttonB.setBorderPainted(false);
+        buttonB.setBackground(new Color(50,52,55));
+        buttonB.setForeground(new Color(226,183,20));
+        buttonB.addActionListener(this);
+
+        buttonC.setBounds(12, 350, 15,15);
+        buttonC.setBorderPainted(false);
+        buttonC.setBackground(new Color(50,52,55));
+        buttonC.setForeground(new Color(226,183,20));
+        buttonC.addActionListener(this);
+
+        buttonD.setBounds(12, 450, 15,15);
+        buttonD.setBorderPainted(false);
+        buttonD.setBackground(new Color(50,52,55));
+        buttonD.setForeground(new Color(226,183,20));
+        buttonD.addActionListener(this);
+
+        answer_labelA.setBounds(40,105,1000,100);
+        answer_labelA.setBackground(new Color(50,52,55));
+        answer_labelA.setForeground(new Color(226,183,20));
+        answer_labelA.setFont(new Font("Monospaced", Font.PLAIN, 14));
+
+        answer_labelB.setBounds(40,205,1000,100);
+        answer_labelB.setBackground(new Color(50,52,55));
+        answer_labelB.setForeground(new Color(226,183,20));
+        answer_labelB.setFont(new Font("Monospaced", Font.PLAIN, 14));
+
+        answer_labelC.setBounds(40,305,1000,100);
+        answer_labelC.setBackground(new Color(50,52,55));
+        answer_labelC.setForeground(new Color(226,183,20));
+        answer_labelC.setFont(new Font("Monospaced", Font.PLAIN, 14));
+
+        answer_labelD.setBounds(40,405,1000,100);
+        answer_labelD.setBackground(new Color(50,52,55));
+        answer_labelD.setForeground(new Color(226,183,20));
+        answer_labelD.setFont(new Font("Monospaced", Font.PLAIN, 14));
+
+        seconds_left.setBounds(950,515,100,100);
+        seconds_left.setBackground(new Color(50,52,55));
+        seconds_left.setForeground(new Color(226,183,20));
+        seconds_left.setFont(new Font("Monospaced", Font.BOLD, 45));
+        seconds_left.setOpaque(true);
+        seconds_left.setHorizontalAlignment(JTextField.CENTER);
+        seconds_left.setText(String.valueOf(seconds));
+
+        time_label.setBounds(950,510,100,30);
+        time_label.setBackground(new Color(50,52,55));
+        time_label.setForeground(new Color(226,183,20));
+        time_label.setFont(new Font("Monospaced",Font.BOLD,25));
+        time_label.setHorizontalAlignment(JTextField.CENTER);
+        time_label.setText("Time");
+
+        score_board.setBounds(850,515,100,100);
+        score_board.setBackground(new Color(50,52,55));
+        score_board.setForeground(new Color(226,183,20));
+        score_board.setFont(new Font("Monospaced", Font.BOLD, 45));
+        score_board.setOpaque(true);
+        score_board.setHorizontalAlignment(JTextField.CENTER);
+        score_board.setText(String.valueOf(current_score));
+
+        score_label.setBounds(850,510,100,30);
+        score_label.setBackground(new Color(50,52,55));
+        score_label.setForeground(new Color(226,183,20));
+        score_label.setFont(new Font("Monospaced",Font.BOLD,25));
+        score_label.setHorizontalAlignment(JTextField.CENTER);
+        score_label.setText("Score");
+
+        number_right.setBounds(425, 230, 200,100);
+        number_right.setBackground(new Color(50,52,55));
+        number_right.setForeground(new Color(244,244,245));
+        number_right.setFont(new Font("Monospaced", Font.BOLD,55));
+        number_right.setHorizontalAlignment(JTextField.CENTER);
+        number_right.setEditable(false);
+        number_right.setBorder(null);
+        number_right.setText("55");
+
+        percentage.setBounds(430,300,200,100);
+        percentage.setBackground(new Color(50,52,55));
+        percentage.setForeground(new Color(226,183,20));
+        percentage.setFont(new Font("Monospaced", Font.BOLD, 55));
+        percentage.setHorizontalAlignment(JTextField.CENTER);
+        percentage.setBorder(null);
+        percentage.setEditable(false);
+        percentage.setText("80%");
+
+
+//        frame.add(number_right);
+//        frame.add(percentage);
+        frame.add(score_label);
+        frame.add(score_board);
+        frame.add(time_label);
+        frame.add(seconds_left);
+        frame.add(answer_labelA);
+        frame.add(answer_labelB);
+        frame.add(answer_labelC);
+        frame.add(answer_labelD);
+        frame.add(buttonA);
+        frame.add(buttonB);
+        frame.add(buttonC);
+        frame.add(buttonD);
         frame.add(textArea);
         frame.add(textField);
         frame.setVisible(true);
+
+        nextQuestion();
     }
     public void nextQuestion() {
-
+        if (index >= total_questions) {
+            results();
+        }
+        else {
+            textField.setText("Question "+ (index + 1));
+            textArea.setText(questions[index]);
+            answer_labelA.setText("<html>" + options[index][0] + "</html>");
+            answer_labelB.setText("<html>" + options[index][1] + "</html>");
+            answer_labelC.setText("<html>" + options[index][2] + "</html>");
+            answer_labelD.setText("<html>" + options[index][3] + "</html>");
+        }
     }
 
     @Override
