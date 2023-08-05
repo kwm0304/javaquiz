@@ -2,6 +2,7 @@ import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 
+
 public class Quiz implements ActionListener{
     //initializing vars
     String[] questions = {
@@ -354,12 +355,12 @@ public class Quiz implements ActionListener{
     JFrame frame = new JFrame();
     JTextField textField = new JTextField();
     JTextArea textArea = new JTextArea();
-    JButton buttonA = new JButton();
-    JButton buttonB = new JButton();
-    JButton buttonC = new JButton();
-    JButton buttonD = new JButton();
-    JButton buttonTrue = new JButton();
-    JButton buttonFalse = new JButton();
+    JRadioButton buttonA = new JRadioButton();
+    JRadioButton buttonB = new JRadioButton();
+    JRadioButton buttonC = new JRadioButton();
+    JRadioButton buttonD = new JRadioButton();
+    JRadioButton buttonTrue = new JRadioButton();
+    JRadioButton buttonFalse = new JRadioButton();
     JLabel answer_labelA = new JLabel();
     JLabel answer_labelB = new JLabel();
     JLabel answer_labelC = new JLabel();
@@ -375,8 +376,34 @@ public class Quiz implements ActionListener{
     //constructor
     public Quiz() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(650,650);
+        frame.setSize(1100,650);
+        frame.getContentPane().setBackground(new Color(50,52,55));
+        frame.setLayout(null);
+        frame.setResizable(false);
 
+        textField.setBounds(42,0,1000,50);
+        textField.setBackground(new Color(100,102,105));
+        textField.setForeground(new Color(244,244,245));
+        textField.setBorder(BorderFactory.createEmptyBorder());
+        textField.setFont(new Font("Monospaced", Font.BOLD, 30));
+        textField.setHorizontalAlignment(JTextField.CENTER);
+        textField.setEditable(false);
+
+        textArea.setBounds(42,50,1000,50);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setBackground(new Color(100,102,105));
+        textArea.setForeground(new Color(244,244,245));
+        textArea.setBorder(BorderFactory.createEmptyBorder());
+        textArea.setFont(new Font("Monospaced", Font.BOLD, 25));
+        textArea.setEditable(false);
+
+        CheckboxGroup checkBox = new CheckboxGroup();
+        buttonA.setBounds(0, 100, 15,15);
+        buttonA.addActionListener(this);
+
+        frame.add(textArea);
+        frame.add(textField);
         frame.setVisible(true);
     }
     public void nextQuestion() {
